@@ -1,0 +1,48 @@
+@function rem($px) {
+    $px: calc(($px / 16) * 1rem);
+    @return $px;
+}
+
+
+$cifre: 1;
+$backgroundcolor: white;
+$textcolor: black;
+
+@while $cifre < 20 {
+    @if $cifre ==11 {
+        section div:nth-child(11) {
+            background-color: blue;
+            color: red;
+        }
+    }
+
+    @else {
+        section div:nth-child(#{$cifre}) {
+            color: $textcolor;
+            background-color: $backgroundcolor;
+        }
+    }
+
+    $backgroundcolor: darken($backgroundcolor, 5%);
+    $textcolor: lighten($textcolor, 5%);
+    $cifre: $cifre + 1;
+}
+
+$misure: 1rem, 2rem, 3rem;
+
+@each $misura in $misure {
+    .fs-#{$misura}{
+        font-size: $misura;
+    }
+}
+
+
+[class*="fs"] {
+    width: rem(45);
+    height: rem(45);
+    justify-content: unset;
+    padding: unset;
+    text-align: left;
+    align-items: unset;
+}
+

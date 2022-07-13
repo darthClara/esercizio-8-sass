@@ -1,0 +1,92 @@
+@use "funzioni";
+
+
+%centratura {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5%;
+}
+
+%titoli {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    color: green;
+}
+
+@mixin articolo($colore, $colore-bordo) {
+    color: $colore;
+    border-color: $colore-bordo;
+    border-style: solid;
+    border-width: 1px;
+}
+
+body {
+    @extend %centratura;
+    width: 100vw;
+    height: 100vh;
+
+    div {
+        @extend %centratura;
+        border: 1px solid red;
+        flex-direction: column;
+        width: 100%;
+
+        h1 {
+            @extend %centratura;
+            @extend %titoli;
+
+        }
+
+        h2 {
+            @extend %titoli;
+            border: solid 1px red;
+            padding: 1rem;
+        }
+
+        section {
+            @extend %centratura;
+            height: 100px;
+            width: 100%;
+
+            article {
+                height: 100%;
+                width: 25%;
+                @extend %centratura;
+                @include articolo(blue, green);
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+
+            article:nth-child(even) {
+                color: red;
+            }
+        }
+
+        section:nth-child(5) {
+            @extend %centratura;
+            font-size: 20px;
+
+
+            article {
+                width: 100%;
+                @include articolo(green, blue);
+
+                & {
+                    width: 100%
+                }
+
+                ;
+            }
+        }
+
+        section:nth-child(4) {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            height: unset;
+
+        }
+
+    }
+}
